@@ -1,0 +1,297 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="POLARIS — an interactive 3D laboratory for optical polarization." />
+    <title>POLARIS | Interactive Polarization Laboratory</title>
+  </head>
+  <body>
+    <header class="site-header" id="home">
+      <a class="brand" href="#home" aria-label="POLARIS home"><span class="brand-mark">◈</span> POLARIS</a>
+      <nav aria-label="Primary navigation">
+        <a href="#laboratory">Laboratory</a>
+        <a href="#theory">Theory</a>
+        <a href="#about">About</a>
+      </nav>
+      <a class="header-cta" href="#laboratory">Launch lab <span>→</span></a>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Interactive optics experiment</p>
+          <h1>See polarization<br /><em>in motion.</em></h1>
+          <p class="hero-text">
+            Follow an electromagnetic field through real optical polarizers.
+            Rotate the analyzer, inspect the projections, and watch Malus’ Law take shape.
+          </p>
+          <div class="hero-actions">
+            <a class="primary-button" href="#laboratory">Start experiment <span>→</span></a>
+            <a class="text-button" href="#theory">Explore theory ↓</a>
+          </div>
+        </div>
+        <div class="hero-orbit" aria-hidden="true">
+          <div class="orbit-ring ring-one"></div>
+          <div class="orbit-ring ring-two"></div>
+          <div class="glow-dot"></div>
+        </div>
+      </section>
+
+      <section class="laboratory" id="laboratory">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Live simulation</p>
+            <h2>Polarization laboratory</h2>
+          </div>
+          <p class="status-dot"><span></span> WebGL experiment active</p>
+        </div>
+
+        <div id="webgl-fallback" class="webgl-fallback" hidden>
+          WebGL is unavailable in this browser. The physics controls and graph remain available.
+        </div>
+
+        <div class="lab-layout">
+          <aside class="control-panel glass-panel" aria-label="Experiment controls">
+            <div class="panel-heading">
+              <span>Experiment controls</span>
+              <button id="play-button" class="icon-button" aria-label="Pause animation">❚❚</button>
+            </div>
+
+            <div class="control-group">
+              <label for="input-intensity">Initial intensity <output id="input-intensity-value">100%</output></label>
+              <input id="input-intensity" type="range" min="10" max="100" value="100" step="5" />
+            </div>
+
+            <div class="control-group">
+              <label for="speed">Animation speed <output id="speed-value">1.0×</output></label>
+              <input id="speed" type="range" min="0.2" max="2" value="1" step="0.1" />
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="polarizer-controls">
+              <div class="subheading">
+                Optical elements
+                <button id="add-polarizer" class="small-button" title="Add polarizer">+ Add</button>
+              </div>
+              <div id="polarizer-list"></div>
+              <button id="remove-polarizer" class="remove-button">− Remove last polarizer</button>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="toggles">
+              <label><input id="toggle-electric" type="checkbox" checked /><span></span> Electric-field vectors</label>
+              <label><input id="toggle-magnetic" type="checkbox" /><span></span> Magnetic-field vectors</label>
+              <label><input id="toggle-components" type="checkbox" checked /><span></span> Component decomposition</label>
+              <label><input id="toggle-direction" type="checkbox" checked /><span></span> Propagation indicators</label>
+            </div>
+
+            <div class="preset-buttons">
+              <p class="subheading">Quick experiments</p>
+              <button data-preset="aligned">Aligned</button>
+              <button data-preset="crossed">Crossed</button>
+              <button data-preset="three">0° · 45° · 90°</button>
+            </div>
+
+            <button id="reset-button" class="reset-button">↺ Reset experiment</button>
+          </aside>
+
+          <div class="scene-panel glass-panel">
+            <div id="scene-container" aria-label="Interactive 3D polarization simulation"></div>
+            <div class="scene-caption">
+              <span>Drag to orbit</span>
+              <span>Scroll to zoom</span>
+            </div>
+          </div>
+
+          <aside class="readout-panel glass-panel" aria-live="polite">
+            <p class="eyebrow">Measured output</p>
+            <div class="big-reading">
+              <span id="final-intensity">50.0</span>
+              <small>%</small>
+            </div>
+            <p class="reading-label">Final transmitted intensity</p>
+            <div id="stage-readouts" class="stage-readouts"></div>
+            <div class="formula-card">
+              <span>Active equation</span>
+              <strong id="equation">I₁ = I₀ / 2</strong>
+              <p id="physics-explanation">
+                Unpolarized light transmits half its average intensity through the first ideal polarizer.
+              </p>
+            </div>
+          </aside>
+        </div>
+
+        <div class="chart-panel glass-panel">
+          <div>
+            <p class="eyebrow">Malus’ Law</p>
+            <h3>Transmission vs. analyzer angle</h3>
+          </div>
+          <div class="chart-wrap">
+            <canvas id="intensity-chart"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <section class="theory" id="theory">
+        <p class="eyebrow">Theory, made visible</p>
+        <h2>What the laboratory is showing</h2>
+        <div class="theory-grid">
+          <article>
+            <span>01</span>
+            <h3>Unpolarized light</h3>
+            <p>
+              An unpolarized beam is an ensemble of waves with randomly distributed
+              electric-field directions in the transverse plane—not one wave pointing
+              in all directions at once.
+            </p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Linear polarizer</h3>
+            <p>
+              An ideal first polarizer selects one field direction. Averaged across
+              the random ensemble, it transmits half of the incident intensity:
+              I₁ = I₀/2.
+            </p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Malus’ Law</h3>
+            <p>
+              For each following polarizer, only the field projection on its axis passes.
+              Because intensity is proportional to amplitude squared, I = I₀ cos²θ.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- ABOUT / PROJECT INFORMATION -->
+      <section class="about" id="about">
+
+        <div class="about-header">
+          <p class="eyebrow">Project information</p>
+          <h2>Where physics meets <em>technology.</em></h2>
+          <p class="about-intro">
+            POLARIS is an interactive 3D educational laboratory developed to bring
+            the principles of optical polarization to life through real-time
+            visualization, mathematical modelling and interactive experimentation.
+          </p>
+        </div>
+
+        <div class="about-details">
+
+          <div class="about-card contributors-card">
+            <span class="card-label">PROJECT CONTRIBUTORS</span>
+            <div class="contributor-list">
+              <div>
+                <strong>Vedansh Sharma</strong>
+                <small>2601200129</small>
+              </div>
+              <div>
+                <strong>Aryan Singh</strong>
+                <small>2601200131</small>
+              </div>
+              <div>
+                <strong>Daksh Vij</strong>
+                <small>2601200145</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="about-card">
+            <span class="card-label">COURSE & BATCH</span>
+            <strong>Physics Lab 1</strong>
+            <p>Batch G5</p>
+            <small>Mathematics and Computing</small>
+          </div>
+
+          <div class="about-card">
+            <span class="card-label">FACULTY SUPERVISOR</span>
+            <strong>Dr. Anuraj Panwar</strong>
+            <p>Physics Lab 1</p>
+          </div>
+
+          <div class="about-card">
+            <span class="card-label">INSTITUTION</span>
+            <strong>Jaypee Institute of Information Technology</strong>
+            <p>Noida, Uttar Pradesh, India</p>
+          </div>
+
+        </div>
+
+        <div class="about-connect">
+          <div class="connect-copy">
+            <p class="eyebrow">Connect & explore</p>
+            <h3>Find me beyond <em>POLARIS.</em></h3>
+            <p>Explore my work, projects and professional journey.</p>
+          </div>
+
+          <div class="social-links">
+
+            <a
+              href="https://github.com/Vedansh186"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-card"
+              aria-label="Visit Vedansh's GitHub profile"
+            >
+              <div class="social-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill="currentColor" d="M12 .9a11.1 11.1 0 0 0-3.51 21.63c.55.1.76-.24.76-.54v-2.1c-3.1.67-3.75-1.32-3.75-1.32-.5-1.29-1.24-1.63-1.24-1.63-1.02-.7.08-.69.08-.69 1.13.08 1.73 1.16 1.73 1.16 1 1.72 2.62 1.22 3.26.93.1-.72.39-1.22.71-1.5-2.47-.28-5.07-1.24-5.07-5.5 0-1.22.44-2.22 1.16-3-.12-.29-.5-1.42.11-2.96 0 0 .95-.3 3.05 1.15a10.6 10.6 0 0 1 5.55 0c2.11-1.45 3.05-1.15 3.05-1.15.61 1.54.23 2.67.11 2.96.72.78 1.16 1.78 1.16 3 0 4.27-2.6 5.21-5.08 5.49.4.35.76 1.02.76 2.06v3.05c0 .3.2.65.77.54A11.1 11.1 0 0 0 12 .9Z"/>
+                </svg>
+              </div>
+              <div>
+                <strong>GitHub</strong>
+                <small>Explore my repositories</small>
+              </div>
+              <span class="social-arrow">↗</span>
+            </a>
+
+            <a
+              href="https://www.linkedin.com/in/vedanshsharma11/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-card"
+              aria-label="Visit Vedansh's LinkedIn profile"
+            >
+              <div class="social-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill="currentColor" d="M20.45 2H3.55C2.69 2 2 2.68 2 3.52v16.96c0 .84.69 1.52 1.55 1.52h16.9c.86 0 1.55-.68 1.55-1.52V3.52c0-.84-.69-1.52-1.55-1.52ZM7.93 18.9H4.95V9.3h2.98v9.6ZM6.44 8a1.73 1.73 0 1 1 0-3.46 1.73 1.73 0 0 1 0 3.46Zm12.47 10.9h-2.97v-4.67c0-1.11-.02-2.54-1.55-2.54-1.55 0-1.79 1.21-1.79 2.46v4.75H9.63V9.3h2.85v1.31h.04c.4-.75 1.37-1.55 2.82-1.55 3.01 0 3.57 1.98 3.57 4.55v5.29Z"/>
+                </svg>
+              </div>
+              <div>
+                <strong>LinkedIn</strong>
+                <small>Connect professionally</small>
+              </div>
+              <span class="social-arrow">↗</span>
+            </a>
+
+          </div>
+        </div>
+
+        <div class="tech-stack">
+          <span>BUILT WITH</span>
+          <div>
+            <small>JavaScript</small>
+            <small>Three.js</small>
+            <small>Vite</small>
+            <small>Chart.js</small>
+            <small>HTML & CSS</small>
+          </div>
+        </div>
+
+      </section>
+    </main>
+
+    <footer>
+      <span>POLARIS — Interactive Polarization Laboratory</span>
+      <span>Ideal linear-polarizer model · Educational simulation</span>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

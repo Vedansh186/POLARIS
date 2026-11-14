@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="POLARIS — an interactive 3D laboratory for optical polarization." />
+    <title>POLARIS | Interactive Polarization Laboratory</title>
+    <script type="module" crossorigin src="./assets/index-BEAiHj58.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-DXhGftKE.css">
+  </head>
+  <body>
+    <header class="site-header" id="home">
+      <a class="brand" href="#home" aria-label="POLARIS home"><span class="brand-mark">◈</span> POLARIS</a>
+      <nav aria-label="Primary navigation"><a href="#laboratory">Laboratory</a><a href="#theory">Theory</a><a href="#about">About</a></nav>
+      <a class="header-cta" href="#laboratory">Launch lab <span>→</span></a>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Interactive optics experiment</p>
+          <h1>See polarization<br /><em>in motion.</em></h1>
+          <p class="hero-text">Follow an electromagnetic field through real optical polarizers. Rotate the analyzer, inspect the projections, and watch Malus’ Law take shape.</p>
+          <div class="hero-actions"><a class="primary-button" href="#laboratory">Start experiment <span>→</span></a><a class="text-button" href="#theory">Explore theory ↓</a></div>
+        </div>
+        <div class="hero-orbit" aria-hidden="true"><div class="orbit-ring ring-one"></div><div class="orbit-ring ring-two"></div><div class="glow-dot"></div></div>
+      </section>
+
+      <section class="laboratory" id="laboratory">
+        <div class="section-heading"><div><p class="eyebrow">Live simulation</p><h2>Polarization laboratory</h2></div><p class="status-dot"><span></span> WebGL experiment active</p></div>
+        <div id="webgl-fallback" class="webgl-fallback" hidden>WebGL is unavailable in this browser. The physics controls and graph remain available.</div>
+        <div class="lab-layout">
+          <aside class="control-panel glass-panel" aria-label="Experiment controls">
+            <div class="panel-heading"><span>Experiment controls</span><button id="play-button" class="icon-button" aria-label="Pause animation">❚❚</button></div>
+            <div class="control-group"><label for="input-intensity">Initial intensity <output id="input-intensity-value">100%</output></label><input id="input-intensity" type="range" min="10" max="100" value="100" step="5" /></div>
+            <div class="control-group"><label for="speed">Animation speed <output id="speed-value">1.0×</output></label><input id="speed" type="range" min="0.2" max="2" value="1" step="0.1" /></div>
+            <div class="divider"></div>
+            <div class="polarizer-controls"><div class="subheading">Optical elements <button id="add-polarizer" class="small-button" title="Add polarizer">+ Add</button></div><div id="polarizer-list"></div><button id="remove-polarizer" class="remove-button">− Remove last polarizer</button></div>
+            <div class="divider"></div>
+            <div class="toggles">
+              <label><input id="toggle-electric" type="checkbox" checked /><span></span> Electric-field vectors</label>
+              <label><input id="toggle-magnetic" type="checkbox" /><span></span> Magnetic-field vectors</label>
+              <label><input id="toggle-components" type="checkbox" checked /><span></span> Component decomposition</label>
+              <label><input id="toggle-direction" type="checkbox" checked /><span></span> Propagation indicators</label>
+            </div>
+            <div class="preset-buttons"><p class="subheading">Quick experiments</p><button data-preset="aligned">Aligned</button><button data-preset="crossed">Crossed</button><button data-preset="three">0° · 45° · 90°</button></div>
+            <button id="reset-button" class="reset-button">↺ Reset experiment</button>
+          </aside>
+          <div class="scene-panel glass-panel"><div id="scene-container" aria-label="Interactive 3D polarization simulation"></div><div class="scene-caption"><span>Drag to orbit</span><span>Scroll to zoom</span></div></div>
+          <aside class="readout-panel glass-panel" aria-live="polite"><p class="eyebrow">Measured output</p><div class="big-reading"><span id="final-intensity">50.0</span><small>%</small></div><p class="reading-label">Final transmitted intensity</p><div id="stage-readouts" class="stage-readouts"></div><div class="formula-card"><span>Active equation</span><strong id="equation">I₁ = I₀ / 2</strong><p id="physics-explanation">Unpolarized light transmits half its average intensity through the first ideal polarizer.</p></div></aside>
+        </div>
+        <div class="chart-panel glass-panel"><div><p class="eyebrow">Malus’ Law</p><h3>Transmission vs. analyzer angle</h3></div><div class="chart-wrap"><canvas id="intensity-chart"></canvas></div></div>
+      </section>
+
+      <section class="theory" id="theory"><p class="eyebrow">Theory, made visible</p><h2>What the laboratory is showing</h2><div class="theory-grid"><article><span>01</span><h3>Unpolarized light</h3><p>An unpolarized beam is an ensemble of waves with randomly distributed electric-field directions in the transverse plane—not one wave pointing in all directions at once.</p></article><article><span>02</span><h3>Linear polarizer</h3><p>An ideal first polarizer selects one field direction. Averaged across the random ensemble, it transmits half of the incident intensity: I₁ = I₀/2.</p></article><article><span>03</span><h3>Malus’ Law</h3><p>For each following polarizer, only the field projection on its axis passes. Because intensity is proportional to amplitude squared, I = I₀ cos²θ.</p></article></div></section>
+      <section class="about" id="about"><p class="eyebrow">Project information</p><h2>Designed for exploration.</h2><p>POLARIS is an editable university physics project demonstration. Replace the placeholders below with your team’s details before presenting or publishing.</p><div class="about-details"><div><span>Contributors</span><strong>Project contributors</strong></div><div><span>Institution</span><strong>Your institution</strong></div><div><span>Faculty supervisor</span><strong>Faculty supervisor</strong></div></div></section>
+    </main>
+    <footer><span>POLARIS — Interactive Polarization Laboratory</span><span>Ideal linear-polarizer model · Educational simulation</span></footer>
+  </body>
+</html>
