@@ -4,7 +4,8 @@ An interactive 3D laboratory for exploring optical polarization, built with Thre
 
 It runs entirely in the browser with no backend, and deploys as a static site.
 
-<!-- Add a screenshot or GIF of the lab here, e.g. ![POLARIS screenshot](docs/screenshot.png) -->
+<img width="1897" height="905" alt="image" src="https://github.com/user-attachments/assets/d3b223cd-5259-4a12-bfe9-30dc0e164078" />
+
 
 **Live demo:** [lab-polaris.vercel.app](https://lab-polaris.vercel.app/)
 
