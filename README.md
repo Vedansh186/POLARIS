@@ -6,7 +6,7 @@ It runs entirely in the browser with no backend, and deploys as a static site.
 
 <!-- Add a screenshot or GIF of the lab here, e.g. ![POLARIS screenshot](docs/screenshot.png) -->
 
-**Live demo:** _add your Vercel link here_
+**Live demo:** [lab-polaris.vercel.app](https://lab-polaris.vercel.app/)
 
 ---
 
@@ -109,15 +109,7 @@ The tests check the reference cases for the physics module:
 - Multi-polarizer chains use relative angles (0° → 45° → 90° gives 12.5%).
 - Field amplitude scales with the square root of intensity.
 
-## Deployment
 
-POLARIS builds to a static site, so it works with any static host. For Vercel:
-
-1. Push the repository to GitHub.
-2. In [Vercel](https://vercel.com), choose **Add New → Project** and import the repository.
-3. Vercel detects Vite. Confirm the build command `npm run build` and output directory `dist`, then deploy.
-
-Every push to the connected branch triggers a new deployment.
 
 ## Limitations
 
