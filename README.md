@@ -1,4 +1,7 @@
 # ◈ POLARIS — Interactive Polarization Laboratory
+<img width="2172" height="724" alt="Polaris Cyan Orbital Logo" src="https://github.com/user-attachments/assets/dda03909-c47d-4804-8b4a-62303cefd38a" />
+
+
 
 An interactive 3D laboratory for exploring optical polarization, built with Three.js. POLARIS lets you send light through a chain of ideal linear polarizers, rotate each one, and watch **Malus' Law** unfold in real time through animated field vectors, live intensity readouts, and a transmission curve.
 
